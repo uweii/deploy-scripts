@@ -5,7 +5,7 @@
 #author：uwei
 
 #当前脚本所在目录的路径
-current_path=dirname $(readlink -f $0)
+current_path=`dirname $(readlink -f $0)`
 
 #导入application.sh
 . $current_path/application.sh
@@ -18,11 +18,12 @@ function start_app(){
 	if [ $? -eq '1' ]; then  #如果启动成功
 		echo "${app_name} is started at pid: ${pid}"
 	else                     #启动失败
-		if [ -z $pid ]；then         #如果pid为空，说明启动失败
-			echo "${app_name} started failed"
-		else
-			echo "${app_name} is already running at pid: ${pid}"  #程序已经在运行
-		fi
+			if [ -z $pid ]
+     then	#如果pid为空，说明启动失败
+         echo "${app_name} started failed"
+			else
+					echo "${app_name} is already running at pid: ${pid}"  #程序已经在运行
+			fi
 	fi
 }
 

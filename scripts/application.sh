@@ -5,13 +5,13 @@
 #author: uwei
 
 #当前脚本所在文件夹路径
-current_path=dirname $(readlink -f $0)
+current_path=`dirname $(readlink -f $0)`
 
 #应用名称
 app_name="demo.jar"
 
 #应用位置
-app_path=$current_path/project/$app_name
+app_path=$(dirname "$current_path")/project/$app_name
 
 #应用运行的pid
 pid=''
@@ -33,6 +33,7 @@ function start(){
 	is_running
 	if [ $? -eq "0" ]; then #没有运行，就使用nohup命令启动
 		nohup java -jar $app_path > /dev/null 2>&1 &
+		is_running
 		return 1
 	else
 		return 0

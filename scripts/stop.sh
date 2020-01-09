@@ -5,7 +5,7 @@
 #author: uwei
 
 #当前脚本所在目录的路径
-current_path=dirname $(readlink -f $0)
+current_path=`dirname $(readlink -f $0)`
 
 #导入application.sh
 . $current_path/application.sh
